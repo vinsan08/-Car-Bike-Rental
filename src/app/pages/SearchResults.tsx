@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router";
-import { Card } from "../components/Card";
 import { Button } from "../components/Button";
 import { Car, Bike, MapPin, Star, SlidersHorizontal } from "lucide-react";
 import { get } from "../api";
@@ -61,7 +60,7 @@ export function SearchResults() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Filters Sidebar */}
           <div className={`lg:col-span-1 ${showFilters ? 'block' : 'hidden lg:block'}`}>
-            <Card className="p-6 sticky top-24">
+            <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sticky top-24">
               <h3 className="font-semibold text-gray-900 mb-4">Filters</h3>
 
               {/* Vehicle Type */}
@@ -144,7 +143,7 @@ export function SearchResults() {
               >
                 Reset Filters
               </Button>
-            </Card>
+            </div>
           </div>
 
           {/* Results Grid */}
@@ -156,9 +155,8 @@ export function SearchResults() {
                   className="overflow-hidden cursor-pointer"
                   onClick={() => navigate(`/vehicle/${vehicle.id}`)}
                 >
-                  <Card
-                    hover
-                    className="overflow-hidden"
+                  <div
+                    className="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-lg transition-shadow duration-200 overflow-hidden"
                   >
                     <div className="relative h-48">
                       <img
@@ -210,13 +208,13 @@ export function SearchResults() {
                         </Button>
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 </div>
               ))}
             </div>
 
             {filteredVehicles.length === 0 && (
-              <Card className="p-12 text-center">
+              <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-12 text-center">
                 <p className="text-gray-600 text-lg">No vehicles found matching your filters</p>
                 <Button
                   variant="outline"
@@ -232,7 +230,7 @@ export function SearchResults() {
                 >
                   Clear Filters
                 </Button>
-              </Card>
+              </div>
             )}
           </div>
         </div>
